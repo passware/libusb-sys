@@ -1,6 +1,6 @@
 [requires]
 ConanCargoWrapper/0.1@lasote/testing
-libusb/1.0.24-beta@passware/stable
+libusb/1.0.25-beta@passware/stable
 
 [generators]
 ConanCargoWrapper
