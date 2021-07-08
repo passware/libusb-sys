@@ -1,5 +1,5 @@
 [requires]
-ConanCargoWrapper/0.1@lasote/testing
+ConanCargoWrapper/0.1@passware/stable
 libusb/1.0.25-beta@passware/stable
 
 [generators]

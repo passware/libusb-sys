@@ -23,23 +23,11 @@ fn try_conan() -> bool {
         url: String::from("https://conan.bintray.com"),
     };
 
-    let conan_transit = conan::Remote {
-        name: String::from("conan-transit"),
-        url: String::from("https://api.bintray.com/conan/conan/conan-transit"),
-    };
-
     if let None = remote_list
         .iter()
         .find(|&remote| remote.url == conan_center.url)
     {
         missing_remotes.push(conan_center);
-    }
-
-    if let None = remote_list
-        .iter()
-        .find(|&remote| remote.url == conan_transit.url)
-    {
-        missing_remotes.push(conan_transit);
     }
 
     if !missing_remotes.is_empty() {
@@ -54,7 +42,7 @@ fn try_conan() -> bool {
                 .as_str(),
             );
         }
-        panic!(msg);
+        panic!("{}", msg);
     }
 
     let recipe = if cfg!(windows) {
