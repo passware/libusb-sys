@@ -1,6 +1,6 @@
 [requires]
 ConanCargoWrapper/0.1@passware/stable
-libusb/1.0.25-beta@passware/stable
+libusb/1.0.25-rc1-1e57e84@passware/stable
 
 [generators]
 ConanCargoWrapper
