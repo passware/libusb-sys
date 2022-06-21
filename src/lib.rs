@@ -242,8 +242,8 @@ extern "C" {
     pub fn libusb_free_config_descriptor(config: *const libusb_config_descriptor);
 
     pub fn libusb_get_bus_number(dev: *const libusb_device) -> u8;
-    pub fn libusb_get_port_number(dev: *mut libusb_device) -> u8;
-    pub fn libusb_get_port_numbers(dev: *mut libusb_device, port_numbers: *mut u8, port_numbers_len: c_int) -> c_int;
+    pub fn libusb_get_port_number(dev: *const libusb_device) -> u8;
+    pub fn libusb_get_port_numbers(dev: *const libusb_device, port_numbers: *mut u8, port_numbers_len: c_int) -> c_int;
     pub fn libusb_get_device_address(dev: *const libusb_device) -> u8;
     pub fn libusb_get_device_speed(dev: *const libusb_device) -> c_int;
     pub fn libusb_get_max_packet_size(dev: *const libusb_device, endpoint: c_uchar) -> c_int;
