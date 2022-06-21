@@ -20,7 +20,7 @@ fn try_conan() -> bool {
 
     let conan_center = conan::Remote {
         name: String::from("conan-center"),
-        url: String::from("https://conan.bintray.com"),
+        url: String::from("https://center.conan.io"),
     };
 
     if let None = remote_list
