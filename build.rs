@@ -1,5 +1,6 @@
 extern crate conan;
 
+use std::env;
 use std::path;
 
 fn main() {
@@ -51,11 +52,17 @@ fn try_conan() -> bool {
         "conanfile-unix.txt"
     };
 
-    let install_command = conan::InstallCommandBuilder::new()
+    let mut install_command = conan::InstallCommandBuilder::new()
         .build_policy(conan::BuildPolicy::Missing)
-        .recipe_path(path::Path::new(recipe))
-        .build();
+        .recipe_path(path::Path::new(recipe));
 
+    let conan_profile = env::var("CONAN_TARGET_PROFILE").unwrap_or(String::from(""));
+
+    if !conan_profile.is_empty() {
+        install_command = install_command.with_profile(conan_profile.as_str());
+    }
+
+    let install_command = install_command.build();
     if let Some(build_info) = install_command.generate() {
         build_info.cargo_emit();
         return true;
