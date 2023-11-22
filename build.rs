@@ -52,7 +52,7 @@ fn try_conan() -> bool {
     };
 
     let mut install_command = conan::InstallCommandBuilder::new()
-        .build_policy(conan::BuildPolicy::Missing)
+        .build_policy(conan::BuildPolicy::Never)
         .recipe_path(path::Path::new(recipe));
 
     let conan_profile = env::var("CONAN_TARGET_PROFILE").unwrap_or(String::from(""));
