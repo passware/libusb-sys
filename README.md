@@ -5,11 +5,8 @@ The `libusb-sys` crate provides declarations and linkage for the `libusb` C libr
 the native `libusb` library functions.
 
 ## Dependencies
-In order to use the `libusb-sys` crate, you must have the `libusb` library installed where it can be
-found by `pkg-config`.
-
-All systems supported by `libusb` are also supported by the `libusb-sys` crate. It's been tested on
-Linux, OS X, and Windows.
+This crate uses the *conan* package manager to download the latest version of the `libusb` library. To use apropriate
+versions of `libusb` for your platform, setup **release** and **debug** *conan* profiles.
 
 ### Cross-Compiling
 To link to a cross-compiled version of the native `libusb` library, it's necessary to set several
