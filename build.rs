@@ -55,10 +55,16 @@ fn try_conan() -> bool {
         .build_policy(conan::BuildPolicy::Never)
         .recipe_path(path::Path::new(recipe));
 
-    let conan_profile = env::var("CONAN_TARGET_PROFILE").unwrap_or(String::from(""));
+    let debug = env::var("DEBUG").expect("DEBUG is cargo env variable") == "true";
+
+    let conan_profile = env::var("CONAN_TARGET_PROFILE");
+    let conan_profile = conan_profile
+        .as_ref()
+        .map(|s| s.as_str())
+        .unwrap_or(if debug { "debug" } else { "release" });
 
     if !conan_profile.is_empty() {
-        install_command = install_command.with_profile(conan_profile.as_str());
+        install_command = install_command.with_profile(conan_profile);
     }
 
     let install_command = install_command.build();
