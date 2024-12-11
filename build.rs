@@ -55,7 +55,9 @@ fn try_conan() -> bool {
         .build_policy(conan::BuildPolicy::Never)
         .recipe_path(path::Path::new(recipe));
 
-    let debug = env::var("DEBUG").expect("DEBUG is cargo env variable") == "true";
+    let debug = env::var("DEBUG")
+        .expect("Missing DEBUG env variable (cargo was expected to set it)")
+        == "true";
 
     let conan_profile = env::var("CONAN_TARGET_PROFILE");
     let conan_profile = conan_profile
