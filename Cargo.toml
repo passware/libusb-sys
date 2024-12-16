@@ -17,4 +17,4 @@ links = "usb-1.0"
 libc = "0.2"
 
 [build-dependencies]
-conan = "0.4.2"
+conan = { git = "https://github.com/passware/conan-rs" }

@@ -17,6 +17,22 @@ fn main() {
     let conan_profile = env::var("CONAN_PROFILE").ok();
     if let Some(conan_profile) = conan_profile.as_ref() {
         install_command = install_command.with_profile(conan_profile.as_str());
+    } else {
+        let debug = env::var("DEBUG")
+            .expect("Missing DEBUG env variable (cargo was expected to set it)")
+            == "true";
+
+        let build_settings = if debug {
+            conan::BuildSettings::new()
+                .build_type("Debug")
+                .compiler_runtime("MTd".to_string())
+        } else {
+            conan::BuildSettings::new()
+                .build_type("Release")
+                .compiler_runtime("MT".to_string())
+        };
+        let build_settings = build_settings.compiler_version("16".to_string());
+        install_command = install_command.build_settings(build_settings);
     }
 
     let install_command = install_command.build();
