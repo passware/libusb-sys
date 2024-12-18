@@ -12,7 +12,7 @@ fn main() {
     let mut install_command = conan::InstallCommandBuilder::new()
         .build_policy(conan::BuildPolicy::Never)
         .recipe_path(path::Path::new(recipe))
-        .with_remote("conancenter");
+        .with_remote("conan-center");
 
     let conan_profile = env::var("CONAN_PROFILE").ok();
     if let Some(conan_profile) = conan_profile.as_ref() {
