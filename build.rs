@@ -11,8 +11,7 @@ fn main() {
 
     let mut install_command = conan::InstallCommandBuilder::new()
         .build_policy(conan::BuildPolicy::Never)
-        .recipe_path(path::Path::new(recipe))
-        .with_remote("passware");
+        .recipe_path(path::Path::new(recipe));
 
     let conan_profile = env::var("CONAN_PROFILE").ok();
     if let Some(conan_profile) = conan_profile.as_ref() {
