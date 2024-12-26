@@ -16,7 +16,7 @@ fn main() {
     let conan_profile = env::var("CONAN_PROFILE").ok();
     if let Some(conan_profile) = conan_profile.as_ref() {
         install_command = install_command.with_profile(conan_profile.as_str());
-    } else {
+    } else if cfg!(windows) {
         let debug = env::var("DEBUG")
             .expect("Missing DEBUG env variable (cargo was expected to set it)")
             == "true";
